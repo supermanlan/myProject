@@ -3,26 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>我的小站</title>
+  <title>superlan的小站</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/locale/zh-cn.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 </head>
 <body>
-  <h1>🌿 我的个人小站</h1>
+  <div class="container">
+    <div class="card glass">
+      <h1>superlan的小站</h1>
+      <p id="quote">加载美句中...</p>
+      <p id="time">加载时间中...</p>
+      <p id="weather">加载天气中...</p>
+      <button onclick="toggleTheme()">切换主题</button>
+    </div>
 
-  <section>
-    <h2>📔 今日日记</h2>
-    <textarea id="diary" placeholder="写点什么吧..."></textarea>
-    <button onclick="saveDiary()">💾 保存</button>
-  </section>
+    <div class="card glass">
+      <meting-js
+        server="netease"
+        type="playlist"
+        id="60198"
+        fixed="true"
+        autoplay="false"
+        theme="#ad7a86">
+      </meting-js>
+    </div>
+  </div>
 
-  <section>
-    <h2>🎵 听听歌</h2>
-    <audio controls>
-      <source src="https://your-domain.github.io/music.mp3" type="audio/mpeg">
-      浏览器不支持音频播放。
-    </audio>
-  </section>
-
-  <script src="main.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
