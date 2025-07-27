@@ -1,101 +1,35 @@
 
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>superlan的小站</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: url('./bg.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: '微软雅黑', sans-serif;
-      color: #fff;
-    }
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      backdrop-filter: blur(10px);
-    }
-    .card {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-      text-align: center;
-      width: 90%;
-      max-width: 600px;
-    }
-    .avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin-bottom: 15px;
-      border: 3px solid white;
-    }
-    iframe {
-      border-radius: 12px;
-      margin: 20px 0;
-      width: 100%;
-      height: 120px;
-    }
-    .lyrics-container {
-      max-height: 200px;
-      overflow: hidden;
-      text-align: center;
-      margin-top: 10px;
-    }
-    #lyrics li {
-      list-style: none;
-      margin: 5px 0;
-      opacity: 0.5;
-      transition: 0.3s ease;
-    }
-    #lyrics li.active {
-      font-size: 20px;
-      font-weight: bold;
-      color: #ffffff;
-      opacity: 1;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
   <div class="container">
-    <div class="card">
-      <img src="https://i.imgtg.com/2023/10/30/UWvVw.jpg" alt="头像" class="avatar" />
+    <div class="header">
+      <img src="assets/img/avatar.png" alt="头像" class="avatar" />
+      <h1>superlan的小站</h1>
+      <p class="hitokoto">加载美句中...</p>
+    </div>
+    <div class="music-player">
       <iframe frameborder="no" border="0" marginwidth="0" marginheight="0"
-        src="//music.163.com/outchain/player?type=2&id=1330348068&auto=1&height=66"></iframe>
-      <div class="lyrics-container">
-        <ul id="lyrics">
-          <li class="active">风吹过的地方</li>
-          <li>我看见远方的你</li>
-          <li>回忆慢慢浮现</li>
-          <li>像昨日的场景</li>
-          <li>那些说过的话</li>
-          <li>还留在我心里</li>
-          <li>每一句都如此清晰</li>
-        </ul>
-      </div>
+        width=330 height=86
+        src="//music.163.com/outchain/player?type=2&id=1846197614&auto=1&height=66"></iframe>
+    </div>
+    <div class="function-box">
+      <button onclick="openNote()">记事本</button>
+      <button onclick="speakText()">语音播报</button>
+      <button onclick="openComments()">留言</button>
+    </div>
+    <div id="diary-area" style="display:none;">
+      <input type="password" id="password" placeholder="请输入密码以查看日记">
+      <button onclick="checkPassword()">验证</button>
+      <div id="diary-content"></div>
     </div>
   </div>
-  <script>
-    const lines = document.querySelectorAll('#lyrics li');
-    let index = 0;
-    setInterval(() => {
-      lines.forEach((line, i) => {
-        line.classList.remove('active');
-        if (i === index) {
-          line.classList.add('active');
-          line.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      });
-      index = (index + 1) % lines.length;
-    }, 3000);
-  </script>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>
