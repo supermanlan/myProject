@@ -1,38 +1,42 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>superlan的小站</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/locale/zh-cn.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>superlan的小站 - 预览版</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://source.unsplash.com/1920x1080/?nature') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      backdrop-filter: blur(8px);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    }
+    iframe {
+      margin-top: 20px;
+      border: none;
+      border-radius: 12px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="card glass">
-      <h1>superlan的小站</h1>
-      <p id="quote">加载美句中...</p>
-      <p id="time">加载时间中...</p>
-      <p id="weather">加载天气中...</p>
-      <button onclick="toggleTheme()">切换主题</button>
-    </div>
-
-    <div class="card glass">
-      <meting-js
-        server="netease"
-        type="playlist"
-        id="60198"
-        fixed="true"
-        autoplay="false"
-        theme="#ad7a86">
-      </meting-js>
-    </div>
+  <div class="glass-card">
+    <h1>🎧 欢迎来到 superlan 的小站</h1>
+    <p>背景每日更换，支持主题切换、美句轮播</p>
+    <iframe src="//music.163.com/outchain/player?type=2&id=186016&auto=1&height=66" width="330" height="86"></iframe>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
