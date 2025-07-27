@@ -1,42 +1,87 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>superlan的小站 - 预览版</title>
+  <title>superlan的小站</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: url('https://source.unsplash.com/1920x1080/?nature') no-repeat center center fixed;
+      font-family: 'Noto Sans SC', sans-serif;
+      background-image: url('https://source.unsplash.com/1600x900/?nature,forest');
       background-size: cover;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      backdrop-filter: blur(8px);
+      background-position: center;
     }
-    .glass-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    .glass {
+      backdrop-filter: blur(12px);
+      background-color: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
-    iframe {
-      margin-top: 20px;
-      border: none;
-      border-radius: 12px;
+    .spin-slow {
+      animation: spin 10s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
-<body>
-  <div class="glass-card">
-    <h1>🎧 欢迎来到 superlan 的小站</h1>
-    <p>背景每日更换，支持主题切换、美句轮播</p>
-    <iframe src="//music.163.com/outchain/player?type=2&id=186016&auto=1&height=66" width="330" height="86"></iframe>
+<body class="text-white">
+  <!-- 顶部区域 -->
+  <div class="flex justify-between items-center p-4 glass rounded-xl m-4">
+    <img src="https://i.pravatar.cc/60" class="w-12 h-12 rounded-full" alt="avatar" />
+    <div class="text-center">
+      <div id="time" class="text-xl font-bold">08:00</div>
+      <div id="weather" class="text-sm">哥伦比亚 · 晴</div>
+      <div id="quote" class="text-sm italic mt-1">“不忘初心，方得始终。”</div>
+    </div>
+    <button id="themeToggle" class="px-3 py-1 rounded-xl bg-white/20 hover:bg-white/30">切换主题</button>
   </div>
+
+  <!-- 中间播放区 -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
+    <!-- 歌词展示 -->
+    <div class="glass rounded-xl p-4 h-[300px] overflow-y-auto">
+      <h2 class="text-lg font-semibold mb-2">当前播放 · 网易云</h2>
+      <ul class="space-y-1">
+        <li class="text-gray-300">前奏...</li>
+        <li class="text-white font-bold">你曾是少年</li>
+        <li class="text-gray-300">走在风中...</li>
+        <li class="text-gray-300">梦在远方...</li>
+        <li class="text-gray-300">我们终将</li>
+      </ul>
+    </div>
+
+    <!-- 封面旋转 -->
+    <div class="flex justify-center items-center">
+      <img src="https://p1.music.126.net/Zk_Ymj1y1CHWz_OaB1MyRQ==/109951165208456362.jpg" class="w-48 h-48 rounded-full border-4 border-white spin-slow" alt="album" />
+    </div>
+  </div>
+
+  <!-- 底部功能区 -->
+  <div class="glass p-4 rounded-xl m-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+    <button class="bg-white/10 p-3 rounded-xl hover:bg-white/20">📝 日记</button>
+    <button class="bg-white/10 p-3 rounded-xl hover:bg-white/20">📒 记事本</button>
+    <button class="bg-white/10 p-3 rounded-xl hover:bg-white/20">💬 留言</button>
+    <button class="bg-white/10 p-3 rounded-xl hover:bg-white/20">🎵 设置</button>
+  </div>
+
+  <script>
+    // 时间实时更新
+    setInterval(() => {
+      const now = new Date()
+      const hours = String(now.getHours()).padStart(2, '0')
+      const minutes = String(now.getMinutes()).padStart(2, '0')
+      document.getElementById('time').textContent = `${hours}:${minutes}`
+    }, 1000)
+
+    // 主题切换
+    const toggleBtn = document.getElementById('themeToggle')
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('text-white')
+      document.body.classList.toggle('text-black')
+    })
+  </script>
 </body>
 </html>
