@@ -1,23 +1,25 @@
 
-function updateTime() {
-  const now = dayjs().locale('zh-cn');
-  document.getElementById("time").textContent = now.format("YYYY年MM月DD日 dddd HH:mm:ss");
+function openNote() {
+  alert("记事本功能暂未实现");
 }
-setInterval(updateTime, 1000);
-updateTime();
-
+function speakText() {
+  const msg = new SpeechSynthesisUtterance("欢迎来到 superlan 的小站");
+  msg.lang = "zh-CN";
+  window.speechSynthesis.speak(msg);
+}
+function openComments() {
+  window.open("https://github.com/supermanlan/superlan-comments/issues", "_blank");
+}
+function checkPassword() {
+  const pwd = document.getElementById("password").value;
+  if (pwd === "admin") {
+    document.getElementById("diary-content").innerText = "这里是你的私密日记内容。";
+  } else {
+    alert("密码错误");
+  }
+}
 fetch("https://v1.hitokoto.cn")
-  .then(res => res.json())
+  .then(response => response.json())
   .then(data => {
-    document.getElementById("quote").textContent = data.hitokoto + " —— " + (data.from || "");
+    document.querySelector(".hitokoto").innerText = data.hitokoto;
   });
-
-fetch("https://wttr.in/?format=%C+%t+%w")
-  .then(res => res.text())
-  .then(text => {
-    document.getElementById("weather").textContent = text;
-  });
-
-function toggleTheme() {
-  document.body.classList.toggle("dark-theme");
-}
